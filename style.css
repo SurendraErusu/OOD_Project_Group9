@@ -1,0 +1,78 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items horizontally */
+    min-height: 100vh;
+    background: lightblue;
+}
+
+.title {
+    font-size: 2rem;
+    margin-top: 20px;
+    color: #007bff;
+}
+
+.container {
+    margin-top: auto; /* Pushes container to the center */
+    margin-bottom: auto; /* Pushes container to the center */
+}
+
+.Login {
+    text-align: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #007bff;
+}
+
+.credentials {
+    margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: calc(100% - 20px); /* Adjust width */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.forgot-credentials {
+    margin-bottom: 10px; /* Add space between elements */
+}
+
+.button {
+    margin-top: 10px; /* Add space between elements */
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+.newAccount {
+    margin-top: 10px; /* Add space between elements */
+}
+
+.newAccount a {
+    color: #007bff;
+}
