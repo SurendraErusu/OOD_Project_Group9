@@ -1,0 +1,1 @@
+This folder uses classes described in utils to implement feed functionality. (No new class descriptions are to be made unless entirely necessary).

@@ -1,0 +1,1 @@
+This folder is supposed to house all the class descrptions and every other app merely imports these definition.
