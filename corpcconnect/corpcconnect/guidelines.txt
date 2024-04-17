@@ -1,0 +1,1 @@
+This folder contains the base app and houses login functionality and Signup functionality.
