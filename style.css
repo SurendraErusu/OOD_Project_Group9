@@ -132,3 +132,46 @@ footer {
 .icons img {
     margin: 0 10px;
 }
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.buttons button {
+    margin: 0 10px;
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.buttons button:hover {
+    background-color: #0056b3;
+}
+
+.add-post-form label,
+.add-post-form input[type="text"],
+.add-post-form textarea,
+.add-post-form input[type="file"],
+.add-post-form button {
+    margin-bottom: 10px;
+}
+
+.add-post-form button {
+    padding: 8px 15px;
+    background-color: #007bff; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-post-form button:hover {
+    background-color: #0056b3; 
+}
