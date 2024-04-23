@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add a new post</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1 class="dashboard-title">Add a new post</h1>
+    </header>
+
+    <div class="add-post-form">
+        <form id="postForm" action="#" method="POST">
+            <label for="title">Title:</label><br>
+            <input type="text" id="title" name="title" required><br>
+            <label for="description">Description:</label><br>
+            <textarea id="description" name="description" rows="10" cols="100" required></textarea><br>
+            <label for="attachments">Attachments:</label><br>
+            <input type="file" id="attachments" name="attachments" multiple><br><br>
+            <button type="submit">Post</button>
+        </form>
+        <div id="successMessage" style="display:none;">Post submitted successfully!</div>
+    </div>
+    <div class="center space">
+        <a href="dashboard.html">Go back to the dashboard?</a>
+    </div>
+    <script src="script.js"></script>
+    <footer>
+        <div class="buttons">
+            <button onclick="window.location.href='dashboard.html'">Home</button>
+            <button onclick="window.location.href='search.html'">Search</button>
+            <button onclick="window.location.href='addpost.html'">Add Post</button>
+            <button onclick="window.location.href='profile.html'">View Profile</button>
+        </div>
+    </footer>
+
+</body>
+</html>
