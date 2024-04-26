@@ -1,1 +1,0 @@
-This folder houses all the functionality around DB such as scripts, schema descriptions etc.

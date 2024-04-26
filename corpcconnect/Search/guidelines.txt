@@ -1,2 +1,0 @@
-This folder houses the search functionality backend. It makes a query to Flask based microservices which later return results ensuring paralel and concurrent execution.
-
