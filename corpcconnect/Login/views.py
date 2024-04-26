@@ -1,44 +1,34 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-from django.contrib.admin.views.decorators import staff_member_required
-from corpcconnect.models import NewUser, CustomUser, AdminUser
-from Login.forms import NewUserRegistrationForm, CustomUserLoginForm
-from django.http import HttpResponseForbidden
+from django.contrib import messages
+from .forms import UserRegistrationForm
 
-def register(request):
+
+def register_user(request):
     if request.method == 'POST':
-        form = NewUserRegistrationForm(request.POST)
+        form = UserRegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            return redirect('login')
+            messages.success(request, 'Account created successfully. Waiting for admin approval.')
+            return redirect('register')
     else:
-        form = NewUserRegistrationForm()
-    return render(request, 'register.html', {'form': form})
+        form = UserRegistrationForm()
+        #return redirect('login')
+    return render(request, 'accounts/register.html', {'form': form})
+
 
 def user_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-
-        user = authenticate(request, username=username, password=password)
-
-        if user is not None:
-            login(request, user)
-            return HttpResponse("Login succesful")
+        user = authenticate(username=username, password=password)
+        if user:
+            if user.is_active:
+                login(request, user)
+                return redirect('/posts/profile')  # Redirect to home page after login
+            else:
+                messages.error(request, 'Your account is inactive. Please contact admin.')
         else:
-            print("Login Failed")
-    else:
-        form = CustomUserLoginForm()
-    return render(request, 'login.html', {'form': form})
-
-#@staff_member_required
-def approve_user(request, new_user_id):
-    ##if not isinstance(request.user, AdminUser):
-        #print("here")
-        #return HttpResponseForbidden("You do not have permission to approve users.")
-    #print("JODJO:", new_user_id)
-    new_user = NewUser.objects.get(pk=new_user_id)
-    admin_user = AdminUser.objects.get(pk=request.user.id)
-    admin_user.approve_request(new_user_id)
-    return redirect('pending_users')
+            messages.error(request, 'Invalid username or password.')
+    return render(request, 'accounts/login.html')
 

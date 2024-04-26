@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Post</title>
+</head>
+<body>
+    <h1>Create Post</h1>
+    <form action="{% url 'posts:create_post' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="abstract">Abstract:</label><br>
+        <textarea name="abstract" rows="4" cols="50"></textarea><br>
+        <label for="document">Document:</label><br>
+        <input type="file" name="document"><br>
+        <label for="access_level">Access Level:</label><br>
+        <input type="number" name="access_level"><br>
+        <label for="access_teams">Access Teams:</label><br>
+        <input type="text" name="access_teams"><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
+

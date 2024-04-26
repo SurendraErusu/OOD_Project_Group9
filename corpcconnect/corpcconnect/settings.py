@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+LOGIN_REDIRECT_URL = '/posts/profile/'
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,10 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'feed',
+    #'feed',
     'utils',
     'corpcconnect',
     'Login',
+    'posts',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +59,7 @@ ROOT_URLCONF = 'corpcconnect.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['Login/templates'],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -83,6 +84,14 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+AUTH_USER_MODEL = 'Login.CustomUser'
+
+AUTHENTICATION_BACKENDS = [
+    #'corpcconnect.custom_auth.custom_auth.CustomUserAuthBackend',
+    #'corpcconnect.custom_auth.custom_auth.HRUserAuthBackend',
+    'django.contrib.auth.backends.ModelBackend',  # Default backend
+]
 
 
 # Password validation
