@@ -1,78 +1,60 @@
-from django.test import TestCase, Client
-from django.contrib.auth import get_user_model, authenticate, login
+from django.test import TestCase
+from django.contrib.auth import get_user_model
 from django.urls import reverse
-from corpcconnect.models import NewUser, AdminUser
-from Login.forms import NewUserRegistrationForm, CustomUserLoginForm
-from django.contrib.auth.hashers import make_password
+from .models import CustomUser
 
-#hrp = ""
-def del_user(username):    
-    try:
-        u = AdminUser.objects.get(username = username)
-        u.delete()
-        print(username, "'s account is deleted")
-        #messages.sucess(request, "The user is deleted")
-    except:
-        print(username, " doesn't have an account")
-      #messages.error(request, "The user not found")
-class LoginViewsTest(TestCase):
+User = get_user_model()
+
+class TestAdminWorkflow(TestCase):
     def setUp(self):
-        self.client = Client()
-        # Create HR user
-        #nonlocal hrp
-        del_user("HR")
-        hr_user = AdminUser.objects.create_user(username='HR', password="Hr@Pa$$w0rd")
-        self.assertTrue(hr_user, "HR user creation failed.")
-        print(hr_user)
+        # Create users
+        for i in range(1, 6):
+            username = f'user{i}'
+            team = f'team{i}'
+            role = f'role{i}'
+            access_level = i
+            CustomUser.objects.create_user(username=username, team=team, role=role, access_level=access_level)
+
+    def test_change_user_activation(self):
+        # Log in as Altaf
+        self.client.login(username='altaf', password='v123456789')
+
+        # Change is_active to True for 3 random users
+        users_to_activate = CustomUser.objects.order_by('?')[:3]
+        for user in users_to_activate:
+            user.is_active = True
+            user.save()
+
+        # Try to log in as one of the activated users
+        activated_user = users_to_activate.first()
+        self.client.logout()
+        response = self.client.post(reverse('login'), {'username': activated_user.username, 'password': 'v123456789'})
+        self.assertEqual(response.status_code, 302)  # Redirects to the success URL
+
+    def test_approve_users(self):
+        # Log in as Altaf
+        self.client.login(username='altaf', password='v123456789')
+
+        # Try to approve the remaining users
+        remaining_users = CustomUser.objects.filter(is_active=False)
+        for user in remaining_users:
+            response = self.client.post(reverse('approve_user', args=[user.pk]))
+            self.assertNotEqual(response.status_code, 200)  # Approval should fail
+
+        # Log out
+        self.client.logout()
+
+    def test_login_approved_user(self):
+        # Log in as an approved user
+        approved_user = CustomUser.objects.filter(is_active=True).first()
+        self.client.login(username=approved_user.username, password='v123456789')
+
+        # Try to approve another user
+        response = self.client.post(reverse('approve_user', args=[approved_user.pk]))
+        self.assertNotEqual(response.status_code, 200)  # Approval should fail
+
+        # Log out
+        self.client.logout()
 
 
-    def test_register_and_approve_users(self):
-        # Check if HR user exists
-        hr_user_exists = AdminUser.objects.filter(username='HR').exists()
-        self.assertTrue(hr_user_exists, "HR user does not exist. Make sure to create it.")
-        #nonlocal hrp
-        # Authenticate the HR user
-        hr_password = 'Hr@Pa$$w0rd'
-        #print(hr_password)
-        hr_user = authenticate(username='HR', password=hr_password)
-        
-        self.assertIsNotNone(hr_user, "HR user authentication failed. Check credentials.")
-
-        self.client.force_login(hr_user)
-
-        # Rest of the test logic to register and approve users
-        num_users = 5
-        for i in range(num_users):
-            user_data = {
-                'username': f'user{i}',
-                'email': f'user{i}@example.com',
-                'password1': f'TestP@ss{i}',  # Example password meeting complexity requirements
-                'password2': f'TestP@ss{i}',
-                'company': f'Company{i}',
-                'position': f'Position{i}'
-            }
-            response = self.client.post(reverse('register'), data=user_data)
-            self.assertEqual(response.status_code, 302)
-
-        # Approve users
-        registered_users = NewUser.objects.all()
-        num_approved_users = 3
-        for user in registered_users[:num_approved_users]:
-            approve_response = self.client.get(reverse('approve_user', kwargs={'new_user_id': user.pk}))
-            self.assertEqual(approve_response.status_code, 302)
-
-        approved_users = NewUser.objects.filter(is_approved=True)
-        self.assertEqual(approved_users.count(), num_approved_users)
-
-        # Test login with approved users
-        for user in approved_users:
-            login_data = {
-                'username': user.username,
-                'password': f'TestP@ss{i}',
-            }
-            # Print login data for debugging
-            print("Login Data:", login_data)
-            login_response = self.client.post(reverse('login'), data=login_data, follow=True)
-            print("Login Response:", login_response)
-            self.assertTrue(login_response.context['user'].is_authenticated)
 

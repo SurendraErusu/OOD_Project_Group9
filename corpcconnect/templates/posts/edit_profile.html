@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Profile</title>
+    <script src="https://unpkg.com/htmx.org/dist/htmx.min.js" integrity="sha384-mVzxwIt2+XIR0jv0oB4Dv7dMIBLZc7R/daB9fNvcIG+8j5lXY4N1K93gA9q+8jgV" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1>Edit Profile</h1>
+    <form action="{% url 'posts:edit_profile' %}" method="post" enctype="multipart/form-data" hx-post="this">
+        {% csrf_token %}
+        <label for="bio">Bio:</label><br>
+        <textarea name="bio" rows="4" cols="50">{{ profile.bio }}</textarea><br>
+        <label for="profile_picture">Profile Picture:</label><br>
+        <input type="file" name="profile_picture"><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
+

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Posts</title>
+    <script src="https://unpkg.com/htmx.org@1.6.0"></script>
+</head>
+<body>
+    <h1>User Posts</h1>
+    <ul>
+    {% for post in posts %}
+        <li>{{ post.abstract }}</li>
+        <a href="{% url 'posts:view_pdf' post.document.id %}" target="_blank">View Document</a>
+        Likes: <span id="likes_{{ post.id }}">{{ post.likes }}</span>
+        <button hx-put="/posts/like/{{post.id}}/" hx-target="#likes_{{ post.id }}" hx-swap="outerHTML" hx-headers='{ "X-CSRFToken": "{{ csrf_token }}" }'>Like</button>
+        Dislikes: <span id="dislikes_{{ post.id }}">{{ post.dislikes }}</span>
+            <button hx-put="/posts/dislike/{{post.id}}/" hx-target="#dislikes_{{ post.id }}" hx-swap="innerHTML" hx-headers='{ "X-CSRFToken": "{{ csrf_token }}" }'>Dislike</button>
+        <!-- Add other post details as needed -->
+    {% endfor %}
+    </ul>
+</body>
+</html>
+
