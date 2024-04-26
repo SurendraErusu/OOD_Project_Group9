@@ -1,1 +1,0 @@
-This folder deals with displaying profiles of users. It includes both self and other user profiles. It deals with retrieving user related documents and rendering the frontend to display this.
