@@ -6,10 +6,8 @@ from .models import Profile, Post, Document
 
 @login_required
 def get_profile(request):
-    print(request.user)
-    profile = get_object_or_404(Profile, user=request.user)
-    return render(request, 'posts/profile.html', {'profile': profile})
-
+    user_id = str(request.user.user_id)
+    return redirect('/posts/user/'+user_id)
 @login_required
 def edit_profile(request):
     if request.method == 'POST':

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Results</title>
+</head>
+<body>
+    <h1>Search Results</h1>
+    {% if users %}
+        <h2>Users</h2>
+        <ul>
+            {% for user in users %}
+                <li>{{ user.user.username }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% if posts %}
+        <h2>Posts</h2>
+        <ul>
+            {% for post in posts %}
+                <li>{{ post.post.abstract }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
+

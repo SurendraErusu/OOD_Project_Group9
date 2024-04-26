@@ -25,7 +25,7 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return redirect('/posts/profile')  # Redirect to home page after login
+                return redirect('/posts/profile/')  # Redirect to home page after login
             else:
                 messages.error(request, 'Your account is inactive. Please contact admin.')
         else:
