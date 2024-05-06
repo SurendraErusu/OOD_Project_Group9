@@ -4,11 +4,249 @@
     <meta charset="UTF-8">
     <title>Edit Profile</title>
     <script src="https://unpkg.com/htmx.org/dist/htmx.min.js" integrity="sha384-mVzxwIt2+XIR0jv0oB4Dv7dMIBLZc7R/daB9fNvcIG+8j5lXY4N1K93gA9q+8jgV" crossorigin="anonymous"></script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+        
+        .content {
+            flex: 1;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .button-container button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            border: 3px solid #333; 
+            background-color: #fff;
+            color: #333;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .button-container button:hover {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .button-container button + button {
+            margin-left: 20px;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            justify-content: center; 
+            min-height: 100vh;
+            background: lightblue;
+        }
+
+        h1.title {
+            font-size: 2rem;
+            margin-top: 20px;
+            margin-bottom: 20px; 
+            color: #007bff;
+        }
+
+        .container {
+            margin-top: auto; 
+            margin-bottom: auto; 
+        }
+
+        .Login {
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+
+        .credentials {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: calc(100% - 40px); 
+            padding: 6px; 
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 12px; 
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: block; 
+            margin: 20px auto 10px auto; 
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .newAccount {
+            margin-top: 10px; 
+        }
+
+        .newAccount a {
+            color: #007bff;
+        }
+
+        .footer {
+            margin-top: auto;
+        }
+
+        .icons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .icons img {
+            margin: 0 10px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .buttons button {
+            padding: 8px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .buttons button:hover {
+            background-color: #0056b3;
+        }
+
+
+        form {
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 50%;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #007bff;
+        }
+
+        input[type="text"],
+        textarea,
+        input[type="number"],
+        input[type="file"] {
+            width: calc(100% - 20px);
+            margin-bottom: 10px;
+            padding: 6px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        #registration-form {
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 50%;
+            margin: 20px auto;
+        }
+
+        #registration-form label {
+            display: block;
+            margin-bottom: 10px;
+            color: #007bff;
+        }
+
+        #registration-form input[type="text"],
+        #registration-form textarea,
+        #registration-form input[type="password"] {
+            width: calc(100% - 20px);
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        #registration-form textarea {
+            resize: vertical;}
+
+        #registration-form button[type="submit"] {
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+        }
+
+        #registration-form button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+       
+
+    </style>
 </head>
 <body>
     <h1>Edit Profile</h1>
     <form action="{% url 'posts:edit_profile' %}" method="post" enctype="multipart/form-data" hx-post="this">
-        {% csrf_token %}
         <label for="bio">Bio:</label><br>
         <textarea name="bio" rows="4" cols="50">{{ profile.bio }}</textarea><br>
         <label for="profile_picture">Profile Picture:</label><br>
@@ -17,4 +255,3 @@
     </form>
 </body>
 </html>
-

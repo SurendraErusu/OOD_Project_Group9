@@ -11,5 +11,6 @@ urlpatterns = [
     path('document/<int:document_id>/', view_pdf, name='view_pdf'),
     path('like/<int:post_id>/', like_post, name='like_post'),
     path('dislike/<int:post_id>/', dislike_post, name='dislike_post'),
+    path('user/<int:user_id>/', get_posts, name='user_posts'),
 ]
 
