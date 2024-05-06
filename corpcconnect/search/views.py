@@ -19,6 +19,8 @@ def search_results(request):
             if search_option == 'usernames':
                 users = SearchUser.objects.filter(username__icontains=keyword)
                 print(users, keyword)
+                for user in users:
+                    print(user.user_id)
                 return render(request, 'search/search_results.html', {'users': users})
             elif search_option == 'teams':
                 users = SearchUser.objects.filter(user__team__icontains=keyword)

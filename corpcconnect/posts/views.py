@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.http import FileResponse, JsonResponse, HttpResponse
 from .models import Profile, Post, Document
+from Login.models import CustomUser
 
 @login_required
 def get_profile(request):
@@ -24,7 +25,8 @@ def get_posts(request, user_id):
     if str(request.user.user_id) == user_id:
         posts = Post.objects.filter(author=request.user)
     else:
-        posts = Post.objects.filter(access_teams__contains=request.user.team)
+        user = CustomUser.objects.filter(user_id = user_id)[0]
+        posts = Post.objects.filter(author=user)
 
     return render(request, 'posts/user_posts.html', {'posts': posts})
 

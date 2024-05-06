@@ -1,0 +1,297 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; /* Center content vertically */
+    min-height: 100vh;
+    background: lightblue;
+}
+
+h1.title {
+    font-size: 2rem;
+    margin-top: 20px;
+    margin-bottom: 20px; /* Add margin bottom to create space */
+    color: #007bff;
+}
+
+.container {
+    margin-top: auto; 
+    margin-bottom: auto; 
+}
+
+.Login {
+    text-align: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #007bff;
+}
+
+.credentials {
+    margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: calc(100% - 40px); /* Adjust width */
+    padding: 6px; /* Adjust padding */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 12px; /* Adjust font size */
+}
+
+#username {
+    margin-bottom: 10px; /* Add space between username and password */
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block; /* Ensure the button takes full width */
+    margin: 20px auto 10px auto; /* Center the button horizontally and add space */
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.newAccount {
+    margin-top: 10px; 
+}
+
+.newAccount a {
+    color: #007bff;
+}
+
+.footer {
+    margin-top: auto;
+}
+
+.icons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.icons img {
+    margin: 0 10px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.buttons button {
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.buttons button:hover {
+    background-color: #0056b3;
+}
+
+/* New styles for the form */
+
+form {
+    text-align: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 50%; /* Adjust width of form */
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #007bff;
+}
+
+input[type="text"],
+textarea,
+input[type="number"],
+input[type="file"] {
+    width: calc(100% - 20px); /* Adjust width */
+    margin-bottom: 10px;
+    padding: 6px; /* Adjust padding */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 12px; /* Adjust font size */
+}
+
+input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+form {
+    text-align: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 50%; /* Adjust width of form */
+    margin: 20px auto; /* Center the form horizontally and add space */
+}
+
+label {
+    display: block;
+    margin-bottom: 10px; /* Adjust margin */
+    color: #007bff;
+}
+
+input[type="text"],
+textarea,
+input[type="number"],
+input[type="file"] {
+    width: calc(100% - 20px); /* Adjust width */
+    margin-bottom: 20px; /* Adjust margin */
+    padding: 10px; /* Adjust padding */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px; /* Adjust font size */
+}
+
+textarea {
+    resize: vertical; /* Allow vertical resizing */
+}
+
+input[type="submit"] {
+    padding: 12px 24px; /* Adjust padding */
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-block; /* Ensure button takes only necessary width */
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* New styles for the form */
+
+#registration-form {
+    text-align: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 50%; /* Adjust width of form */
+    margin: 20px auto; /* Center the form horizontally and add space */
+}
+
+#registration-form label {
+    display: block;
+    margin-bottom: 10px; /* Adjust margin */
+    color: #007bff;
+}
+
+#registration-form input[type="text"],
+#registration-form textarea,
+#registration-form input[type="password"] {
+    width: calc(100% - 20px); /* Adjust width */
+    margin-bottom: 20px; /* Adjust margin */
+    padding: 10px; /* Adjust padding */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px; /* Adjust font size */
+}
+
+#registration-form textarea {
+    resize: vertical; /* Allow vertical resizing */
+}
+
+#registration-form button[type="submit"] {
+    padding: 12px 24px; /* Adjust padding */
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-block; /* Ensure button takes only necessary width */
+}
+
+#registration-form button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* New styles for the search form */
+#search-form {
+    text-align: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 50%; /* Adjust width of form */
+    margin: 20px auto; /* Center the form horizontally and add space */
+}
+
+#search-form label {
+    display: block;
+    margin-bottom: 10px; /* Adjust margin */
+    color: #007bff;
+}
+
+#search-form input[type="text"],
+#search-form textarea,
+#search-form input[type="number"],
+#search-form input[type="file"] {
+    width: calc(100% - 20px); /* Adjust width */
+    margin-bottom: 20px; /* Adjust margin */
+    padding: 10px; /* Adjust padding */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px; /* Adjust font size */
+}
+
+#search-form input[type="submit"] {
+    padding: 12px 24px; /* Adjust padding */
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-block; /* Ensure button takes only necessary width */
+}
+
+#search-form input[type="submit"]:hover {
+    background-color: #0056b3;
+}
